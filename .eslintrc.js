@@ -22,7 +22,8 @@ module.exports = {
     "prettier/prettier": [
       "error",
       {
-        semi: false
+        semi: false,
+        singleQuote: false
       }
     ]
   },
