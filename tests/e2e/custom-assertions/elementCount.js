@@ -8,6 +8,7 @@
 // http://nightwatchjs.org/guide#writing-custom-assertions
 
 /* eslint @typescript-eslint/explicit-function-return-type: 0 */
+/* eslint @typescript-eslint/typedef: 0 */
 
 exports.assertion = function elementCount(selector, count) {
   this.message = `Testing if element <${selector}> has count: ${count}`

@@ -2,6 +2,7 @@
 // http://nightwatchjs.org/guide#usage
 
 /* eslint @typescript-eslint/explicit-function-return-type: 0 */
+/* eslint @typescript-eslint/typedef: 0 */
 
 module.exports = {
   "default e2e tests": browser => {

@@ -27,7 +27,8 @@ if (process.env.NODE_ENV === "production") {
         "No internet connection found. App is running in offline mode."
       )
     },
-    error(error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    error(error: any) {
       console.error("Error during service worker registration:", error)
     }
   })

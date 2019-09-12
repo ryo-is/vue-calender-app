@@ -12,5 +12,5 @@ new Vue({
   store,
   vuetify,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  render: (h): any => h(App)
+  render: (h: any): any => h(App)
 }).$mount("#app")
