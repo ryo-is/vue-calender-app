@@ -16,6 +16,9 @@ module.exports = {
     parser: "@typescript-eslint/parser"
   },
   rules: {
+    "@typescript-eslint/no-inferrable-types": 0,
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/typedef": ["error"],
     "prettier/prettier": [
       "error",
       {
@@ -28,6 +31,12 @@ module.exports = {
       files: ["**/__tests__/*.{j,t}s?(x)"],
       env: {
         jest: true
+      }
+    },
+    {
+      files: ["*.ts", "*.tsx"],
+      rules: {
+        "@typescript-eslint/explicit-member-accessibility": ["error"]
       }
     }
   ]
