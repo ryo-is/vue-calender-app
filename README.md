@@ -1,39 +1,39 @@
 # vue-base-source
 
-## Project setup
+VueでWebアプリケーションを開発するときの雛形です。
+
+clone したらリポジトリの向き先を変えて使ってください。
+
 ```
-yarn install
+$ git remote remove origin
+$ git remote add origin <repository_url>
 ```
 
-### Compiles and hot-reloads for development
+## Setup
+
+1. node_moduleをインストールする
+
 ```
-yarn run serve
+$ yarn (or npm i)
 ```
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+2. VSCode上で `.ts` ファイルと `.vue` ファイルで eslint を有効になるようにして、保存したときに prettier が走るようにするために、 `.vscode/settings.json` に下記を追記する
 
-### Run your tests
-```
-yarn run test
-```
+※ `.vscode/settings.json` がない場合は作成する
 
-### Lints and fixes files
 ```
-yarn run lint
+{
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ]
+}
 ```
-
-### Run your end-to-end tests
-```
-yarn run test:e2e
-```
-
-### Run your unit tests
-```
-yarn run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
