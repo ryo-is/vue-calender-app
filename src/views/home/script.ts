@@ -1,10 +1,15 @@
-import { Component, Vue } from "vue-property-decorator"
+import Vue from "vue"
+import { HomeComponentState } from "@/types"
 
-@Component({})
-export default class Home extends Vue {
-  public text: string = "hoge"
-
-  public hoge(): string {
-    return this.text
+export default Vue.extend({
+  data(): HomeComponentState {
+    return {
+      text: "hoge"
+    }
+  },
+  methods: {
+    getText(): string {
+      return this.text
+    }
   }
-}
+})
