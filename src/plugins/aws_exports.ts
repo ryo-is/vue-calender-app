@@ -10,19 +10,8 @@ const awsmobile: { [k: string]: any } = {
   API: {
     endpoints: [
       {
-        name: "toabo-environment-api",
+        name: "rest-api",
         endpoint: process.env.VUE_APP_API_ENDPOINT,
-        custom_header: async () => {
-          return {
-            Authorization: `${(await Auth.currentSession())
-              .getIdToken()
-              .getJwtToken()}`
-          }
-        }
-      },
-      {
-        name: "toabo-demand-api",
-        endpoint: process.env.VUE_APP_DEMAND_API_ENDPOINT,
         custom_header: async () => {
           return {
             Authorization: `${(await Auth.currentSession())
