@@ -1,4 +1,5 @@
 import Vue from "vue"
+import Store from "@/store"
 import { HomeComponentState } from "@/types"
 
 export default Vue.extend({
@@ -6,6 +7,9 @@ export default Vue.extend({
     return {
       text: "hoge"
     }
+  },
+  created() {
+    Store.dispatch("setHiddenToolbarItems", true)
   },
   methods: {
     getText(): string {

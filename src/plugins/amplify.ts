@@ -15,7 +15,7 @@ router.beforeEach((to: Route, from: Route, next: any) => {
       .catch(() => {
         console.log("not authorized")
         next({
-          path: "signin",
+          path: "auth",
           query: {
             redirect: to.fullPath
           }
