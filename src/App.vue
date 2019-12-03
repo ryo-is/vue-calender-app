@@ -1,12 +1,64 @@
 <template lang="pug">
   v-app
+    v-card(height="60px" flat tile)
+      v-app-bar.pl-12(
+        color="indigo" height="60px"
+        prominent dense absolute elevate-on-scroll scroll-target=".main-content"
+      )
+        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
+          v-btn(
+            :color="changeLinkButtonProps('/', 'color')"
+            :text="changeLinkButtonProps('/', 'text')"
+            dark depressed width=160 @click="linkPage('/')") Home
+        v-spacer
+        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
+          v-btn.signout-button(text @click="signout()" dark) ログアウト
     v-content
+      v-overlay(:value="overlay")
+        v-progress-circular(indeterminate size="80" color="indigo" width="5")
       router-view
 </template>
 
 <script lang="ts">
 import Vue from "vue"
-export default Vue.extend({})
+import Store from "@/store"
+import { AppComponentState } from "@/types"
+
+export default Vue.extend({
+  data(): AppComponentState {
+    return {
+      hiddenToolbarItems: true,
+      overlay: false
+    }
+  },
+  created() {
+    Store.watch(
+      (state: any, getters: any) => getters.hiddenToolbarItems,
+      (newValue: boolean) => {
+        this.hiddenToolbarItems = newValue
+      }
+    )
+    Store.watch(
+      (state: any, getters: any) => getters.overlay,
+      (newValue: boolean) => {
+        this.overlay = newValue
+      }
+    )
+  },
+  computed: {
+    changeLinkButtonProps(): Function {
+      const currentRoute: string = this.$route.path
+      return (routeString: string, propText: string): string | boolean => {
+        switch (propText) {
+          case "text":
+            return routeString !== currentRoute
+          default:
+            return routeString === currentRoute ? "indigo darken-3" : ""
+        }
+      }
+    }
+  }
+})
 </script>
 
 <style lang="scss">
