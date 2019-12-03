@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     v-card(height="60px" flat tile)
-      v-app-bar.pl-12(
+      v-app-bar.pl-12.pr-6(
         color="indigo" height="60px"
         prominent dense absolute elevate-on-scroll scroll-target=".main-content"
       )
@@ -22,12 +22,14 @@
 <script lang="ts">
 import Vue from "vue"
 import Store from "@/store"
+import router from "./router"
+import { Auth } from "aws-amplify"
 import { AppComponentState } from "@/types"
 
 export default Vue.extend({
   data(): AppComponentState {
     return {
-      hiddenToolbarItems: true,
+      hiddenToolbarItems: false,
       overlay: false
     }
   },
@@ -55,6 +57,21 @@ export default Vue.extend({
           default:
             return routeString === currentRoute ? "indigo darken-3" : ""
         }
+      }
+    }
+  },
+  methods: {
+    async signout(): Promise<void> {
+      try {
+        await Auth.signOut()
+        router.push("/auth")
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    linkPage(linkPath: string): void {
+      if (linkPath !== this.$route.path) {
+        router.push(linkPath)
       }
     }
   }
