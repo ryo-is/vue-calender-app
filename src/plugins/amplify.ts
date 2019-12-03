@@ -5,6 +5,7 @@ import { Route } from "vue-router"
 Amplify.configure(awsExports)
 
 // 認証確認
+// 認証されていなかったらログイン画面にリダイレクトする
 router.beforeEach((to: Route, from: Route, next: any) => {
   if (to.matched.some((record: any) => record.meta.requiredAuth)) {
     Auth.currentAuthenticatedUser()
