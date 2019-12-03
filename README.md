@@ -58,3 +58,41 @@ VUE_APP_API_ENDPOINT=""
 - VUE_APP_COGNITO_USER_POOL_ID: CognitoユーザープールのID
 - VUE_APP_COGNITO_CLIENT_ID: Cognitoユーザープールに紐付いているアプリクライアントのID
 - VUE_APP_API_ENDPOINT: APIGatewayのエンドポイント
+
+## Amplify Settings
+
+Amplifyに関係する設定については `plugins/aws_exports.ts` に記述している
+
+- Auth: Cognitoに関係する情報
+- API: APIGatewayに関係する情報(AppSyncについてもここで設定する)
+  - APIのエンドポイントについては配列で複数のエンドポイントを設定することができる
+
+  ```
+  endpoints: [
+    {
+      name: "rest-api",
+      endpoint: process.env.VUE_APP_API_ENDPOINT
+    }
+  ]
+  ```
+
+  - `custom_header` を使って、ヘッダーにCognitoのTokenを埋め込むこともできます
+  - `Auth.currentSession()` を呼び出したときにTokenの期限が切れていたらリフレッシュしてくれます
+
+  ```
+  endpoints: [
+    {
+      name: "rest-api",
+      endpoint: process.env.VUE_APP_API_ENDPOINT,
+      custom_header: async () => {
+        return {
+          Authorization: `${(await Auth.currentSession())
+            .getIdToken()
+            .getJwtToken()}`
+        }
+      }
+    }
+  ]
+  ```
+
+##

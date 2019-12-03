@@ -1,6 +1,6 @@
 import { Auth } from "aws-amplify"
 
-const awsmobile: { [k: string]: any } = {
+const awsexports: { [k: string]: any } = {
   Auth: {
     identityPoolId: process.env.VUE_APP_COGNITO_IDENTITY_ID,
     region: "ap-northeast-1",
@@ -24,4 +24,4 @@ const awsmobile: { [k: string]: any } = {
   }
 }
 
-export default awsmobile
+export default awsexports
