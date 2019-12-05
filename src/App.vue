@@ -79,6 +79,28 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+body {
+  margin: 0;
+
+  // スクロールバー非表示
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  // &::-webkit-scrollbar-track {
+  //   background-color: $scrollbar-track-color;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background: rgba($scrollbar-thumb-color, .6);
+  //   border-radius: 8px;
+  // }
+}
+
 #app {
   font-family: "Avenir", "Helvetica Neue", "Helvetica", "Arial", "Hiragino Sans",
     "ヒラギノ角ゴシック", YuGothic, "Yu Gothic", "メイリオ", Meiryo,
