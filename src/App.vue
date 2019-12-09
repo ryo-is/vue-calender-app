@@ -5,16 +5,16 @@
         color="indigo" height="60px"
         prominent dense absolute elevate-on-scroll scroll-target=".main-content"
       )
-        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItemsFlag")
+        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
           v-btn(
             :color="changeLinkButtonProps('/', 'color')"
             :text="changeLinkButtonProps('/', 'text')"
             dark depressed width=160 @click="linkPage('/')") Home
         v-spacer
-        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItemsFlag")
+        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
           v-btn.signout-button(text @click="signout()" dark) ログアウト
     v-content
-      v-overlay(:value="overlayFlag")
+      v-overlay(:value="overlay")
         v-progress-circular(indeterminate size="80" color="indigo" width="5")
       router-view
 </template>
@@ -30,8 +30,8 @@ const flagsMapState = createNamespacedHelpers("flags").mapState
 export default Vue.extend({
   computed: {
     ...flagsMapState({
-      hiddenToolbarItemsFlag: (state: any) => state.hiddenToolbarItems,
-      overlayFlag: (state: any) => state.overlay
+      hiddenToolbarItems: (state: any) => state.hiddenToolbarItems,
+      overlay: (state: any) => state.overlay
     }),
     changeLinkButtonProps(): Function {
       const currentRoute: string = this.$route.path
