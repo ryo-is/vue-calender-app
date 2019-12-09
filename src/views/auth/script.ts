@@ -6,7 +6,6 @@ import { defaultSignupParam, defaultResetPasswordParam } from "./default_values"
 import { Auth } from "aws-amplify"
 import { SignUpParams } from "@aws-amplify/auth/lib/types/Auth"
 
-// const { mapActions } = createNamespacedHelpers("flags")
 const flagsMapActions = createNamespacedHelpers("flags").mapActions
 
 export default Vue.extend({
@@ -22,17 +21,20 @@ export default Vue.extend({
     }
   },
   created() {
-    // eslint-disable-next-line prettier/prettier
-    (this as any).setHiddenToolbarItems(false)
+    const self: any = this
+    self.setHiddenToolbarItems(false)
   },
   methods: {
-    ...flagsMapActions(["setHiddenToolbarItems"]),
+    ...flagsMapActions(["setHiddenToolbarItems", "setOverlay"]),
     // サインイン処理
     async signIn(): Promise<void> {
+      const self: any = this
       try {
+        self.setOverlay(true)
         await Auth.signIn(this.userName, this.password)
         router.push("/")
       } catch (err) {
+        self.setOverlay(false)
         console.error(err)
         this.checkErrorCode(err.code)
       }

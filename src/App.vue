@@ -25,7 +25,6 @@ import { createNamespacedHelpers } from "vuex"
 import router from "./router"
 import { Auth } from "aws-amplify"
 
-// const { mapState } = createNamespacedHelpers("flags")
 const flagsMapState = createNamespacedHelpers("flags").mapState
 
 export default Vue.extend({
