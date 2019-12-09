@@ -2,7 +2,6 @@ import Vue from "vue"
 import { createNamespacedHelpers } from "vuex"
 import { HomeComponentState } from "@/types"
 
-// const { mapActions } = createNamespacedHelpers("flags")
 const flagsMapActions = createNamespacedHelpers("flags").mapActions
 
 export default Vue.extend({
@@ -12,11 +11,12 @@ export default Vue.extend({
     }
   },
   created() {
-    // eslint-disable-next-line prettier/prettier
-    (this as any).setHiddenToolbarItems(true)
+    const self: any = this
+    self.setHiddenToolbarItems(true)
+    self.setOverlay(false)
   },
   methods: {
-    ...flagsMapActions(["setHiddenToolbarItems"]),
+    ...flagsMapActions(["setHiddenToolbarItems", "setOverlay"]),
     getText(): string {
       return this.text
     }
