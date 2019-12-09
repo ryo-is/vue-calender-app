@@ -5,49 +5,35 @@
         color="indigo" height="60px"
         prominent dense absolute elevate-on-scroll scroll-target=".main-content"
       )
-        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
+        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItemsFlag")
           v-btn(
             :color="changeLinkButtonProps('/', 'color')"
             :text="changeLinkButtonProps('/', 'text')"
             dark depressed width=160 @click="linkPage('/')") Home
         v-spacer
-        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
+        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItemsFlag")
           v-btn.signout-button(text @click="signout()" dark) ログアウト
     v-content
-      v-overlay(:value="overlay")
+      v-overlay(:value="overlayFlag")
         v-progress-circular(indeterminate size="80" color="indigo" width="5")
       router-view
 </template>
 
 <script lang="ts">
 import Vue from "vue"
-import Store from "@/store"
+import { createNamespacedHelpers } from "vuex"
 import router from "./router"
 import { Auth } from "aws-amplify"
-import { AppComponentState } from "@/types"
+
+// const { mapState } = createNamespacedHelpers("flags")
+const flagsMapState = createNamespacedHelpers("flags").mapState
 
 export default Vue.extend({
-  data(): AppComponentState {
-    return {
-      hiddenToolbarItems: false,
-      overlay: false
-    }
-  },
-  created() {
-    Store.watch(
-      (state: any, getters: any) => getters.hiddenToolbarItems,
-      (newValue: boolean) => {
-        this.hiddenToolbarItems = newValue
-      }
-    )
-    Store.watch(
-      (state: any, getters: any) => getters.overlay,
-      (newValue: boolean) => {
-        this.overlay = newValue
-      }
-    )
-  },
   computed: {
+    ...flagsMapState({
+      hiddenToolbarItemsFlag: (state: any) => state.hiddenToolbarItems,
+      overlayFlag: (state: any) => state.overlay
+    }),
     changeLinkButtonProps(): Function {
       const currentRoute: string = this.$route.path
       return (routeString: string, propText: string): string | boolean => {

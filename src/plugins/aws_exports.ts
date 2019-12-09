@@ -19,6 +19,17 @@ const awsexports: { [k: string]: any } = {
               .getJwtToken()}`
           }
         }
+      },
+      {
+        name: "rest-api-2",
+        endpoint: process.env.VUE_APP_API_ENDPOINT,
+        custom_header: async () => {
+          return {
+            Authorization: `${(await Auth.currentSession())
+              .getIdToken()
+              .getJwtToken()}`
+          }
+        }
       }
     ]
   }
