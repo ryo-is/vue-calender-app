@@ -21,13 +21,16 @@
 
 <script lang="ts">
 import Vue from "vue"
-import { mapState } from "vuex"
+import { createNamespacedHelpers } from "vuex"
 import router from "./router"
 import { Auth } from "aws-amplify"
 
+// const { mapState } = createNamespacedHelpers("flags")
+const flagsMapState = createNamespacedHelpers("flags").mapState
+
 export default Vue.extend({
   computed: {
-    ...mapState("flags", {
+    ...flagsMapState({
       hiddenToolbarItemsFlag: (state: any) => state.hiddenToolbarItems,
       overlayFlag: (state: any) => state.overlay
     }),

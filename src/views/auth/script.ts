@@ -1,10 +1,13 @@
 import Vue from "vue"
-import Store from "@/stores/flags"
+import { createNamespacedHelpers } from "vuex"
 import router from "@/router"
 import { AuthComponentState } from "@/types"
 import { defaultSignupParam, defaultResetPasswordParam } from "./default_values"
 import { Auth } from "aws-amplify"
 import { SignUpParams } from "@aws-amplify/auth/lib/types/Auth"
+
+// const { mapActions } = createNamespacedHelpers("flags")
+const flagsMapActions = createNamespacedHelpers("flags").mapActions
 
 export default Vue.extend({
   data(): AuthComponentState {
@@ -19,9 +22,11 @@ export default Vue.extend({
     }
   },
   created() {
-    Store.dispatch("flags/setHiddenToolbarItems", false)
+    // eslint-disable-next-line prettier/prettier
+    (this as any).setHiddenToolbarItems(false)
   },
   methods: {
+    ...flagsMapActions(["setHiddenToolbarItems"]),
     // サインイン処理
     async signIn(): Promise<void> {
       try {
