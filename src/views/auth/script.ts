@@ -1,5 +1,5 @@
 import Vue from "vue"
-import Store from "@/store"
+import Store from "@/stores/flags"
 import router from "@/router"
 import { AuthComponentState } from "@/types"
 import { defaultSignupParam, defaultResetPasswordParam } from "./default_values"
@@ -19,7 +19,7 @@ export default Vue.extend({
     }
   },
   created() {
-    Store.dispatch("setHiddenToolbarItems", false)
+    Store.dispatch("flags/setHiddenToolbarItems", false)
   },
   methods: {
     // サインイン処理

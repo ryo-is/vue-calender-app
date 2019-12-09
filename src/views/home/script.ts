@@ -1,5 +1,5 @@
 import Vue from "vue"
-import Store from "@/store"
+import Store from "@/stores/flags"
 import { HomeComponentState } from "@/types"
 
 export default Vue.extend({
@@ -9,7 +9,7 @@ export default Vue.extend({
     }
   },
   created() {
-    Store.dispatch("setHiddenToolbarItems", true)
+    Store.dispatch("flags/setHiddenToolbarItems", true)
   },
   methods: {
     getText(): string {

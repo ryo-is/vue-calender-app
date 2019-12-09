@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     flags: {
+      namespaced: true,
       state: {
         hiddenToolbarItems: false,
         overlay: false
