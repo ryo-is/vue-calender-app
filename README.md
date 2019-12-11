@@ -95,15 +95,15 @@ Amplifyに関係する設定については `plugins/aws_exports.ts` に記述�
   ]
   ```
 
-## Models
+## apis
 
-APIへのリクエスト処理は `models/abstract_model.ts` に書いてあります。
+APIへのリクエスト処理は `apis/abstract_class.ts` に書いてあります。
 GET/POST/PUTに対応しています。
 
 ```
 import { API } from "aws-amplify"
 
-export default class AbstractModel {
+export default class AbstractClass {
   private apiName: string
 
   constructor(apiName: string) {
@@ -129,10 +129,10 @@ export default class AbstractModel {
 
 これをextendsして使ってください。
 
-例は `models/sample_api.ts` に書いてあります。
+例は `apis/sample_api.ts` に書いてあります。
 
 ```
-import AbstractModel from "./abstract_model"
+import AbstractClass from "./abstract_class"
 
 type UserData = {
   id: string
@@ -140,7 +140,7 @@ type UserData = {
   age: number
 }
 
-export default class SampleAPI extends AbstractModel {
+export default class SampleAPI extends AbstractClass {
   constructor() {
     super("rest-api")
   }

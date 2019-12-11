@@ -1,4 +1,4 @@
-import { Module } from "vuex"
+import { Module, ActionContext } from "vuex"
 import { FlagsState, RootState } from "./types"
 
 export const flags: Module<FlagsState, RootState> = {
@@ -24,11 +24,17 @@ export const flags: Module<FlagsState, RootState> = {
     }
   },
   actions: {
-    setHiddenToolbarItems(context: any, value: boolean) {
-      context.commit("setHiddenToolbarItems", value)
+    setHiddenToolbarItems(
+      { commit }: ActionContext<FlagsState, RootState>,
+      value: boolean
+    ) {
+      commit("setHiddenToolbarItems", value)
     },
-    setOverlay(context: any, value: boolean) {
-      context.commit("setOverlay", value)
+    setOverlay(
+      { commit }: ActionContext<FlagsState, RootState>,
+      value: boolean
+    ) {
+      commit("setOverlay", value)
     }
   }
 }
