@@ -8,18 +8,18 @@ export const flags: Module<FlagsState, RootState> = {
     overlay: false
   },
   mutations: {
-    setHiddenToolbarItems(state: any, value: boolean): void {
+    setHiddenToolbarItems(state: FlagsState, value: boolean): void {
       state.hiddenToolbarItems = value
     },
-    setOverlay(state: any, value: boolean): void {
+    setOverlay(state: FlagsState, value: boolean): void {
       state.overlay = value
     }
   },
   getters: {
-    hiddenToolbarItems(state: any): boolean {
+    hiddenToolbarItems(state: FlagsState): boolean {
       return state.hiddenToolbarItems
     },
-    overlay(state: any): boolean {
+    overlay(state: FlagsState): boolean {
       return state.overlay
     }
   },
