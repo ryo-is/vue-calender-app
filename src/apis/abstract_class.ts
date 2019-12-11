@@ -1,6 +1,6 @@
 import { API } from "aws-amplify"
 
-export default class AbstractModel {
+export default class AbstractClass {
   private apiName: string
 
   constructor(apiName: string) {
