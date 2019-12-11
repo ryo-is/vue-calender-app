@@ -1,29 +1,25 @@
 import Vue from "vue"
 import { createNamespacedHelpers } from "vuex"
-// import { HomeComponentState } from "@/types"
+import { HomeComponentState } from "@/types"
 
-const flagsMapActionsHelper = createNamespacedHelpers("flags").mapActions
+const flagsNamespacedHelper = createNamespacedHelpers("flags")
+const flagsMapActions = flagsNamespacedHelper.mapActions([
+  "setHiddenToolbarItems",
+  "setOverlay"
+])
 
 export default Vue.extend({
-  data() {
+  data(): HomeComponentState {
     return {
-      text: "hoge",
-      setHiddenToolbarItems: null,
-      setOverlay: null
+      text: "hoge"
     }
   },
   created() {
-    console.log(flagsMapActionsHelper(["setHiddenToolbarItems", "setOverlay"]))
-    const flagsMapActions = flagsMapActionsHelper([
-      "setHiddenToolbarItems",
-      "setOverlay"
-    ])
-    this.setHiddenToolbarItems = flagsMapActions.setHiddenToolbarItems
-    this.setOverlay = flagsMapActions.setOverlay
     this.setHiddenToolbarItems(true)
     this.setOverlay(false)
   },
   methods: {
+    ...flagsMapActions,
     getText(): string {
       return this.text
     }

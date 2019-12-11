@@ -25,11 +25,11 @@ import { createNamespacedHelpers } from "vuex"
 import router from "./router"
 import { Auth } from "aws-amplify"
 
-const flagsMapState = createNamespacedHelpers("flags").mapState
+const flagsNamespacedHelper = createNamespacedHelpers("flags")
 
 export default Vue.extend({
   computed: {
-    ...flagsMapState({
+    ...flagsNamespacedHelper.mapState({
       hiddenToolbarItems: (state: any) => state.hiddenToolbarItems,
       overlay: (state: any) => state.overlay
     }),
