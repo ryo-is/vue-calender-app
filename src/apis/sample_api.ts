@@ -1,4 +1,4 @@
-import AbstractModel from "./abstract_model"
+import AbstractClass from "./abstract_class"
 
 type UserData = {
   id: string
@@ -6,7 +6,7 @@ type UserData = {
   age: number
 }
 
-export default class SampleAPI extends AbstractModel {
+export default class SampleAPI extends AbstractClass {
   constructor() {
     super("rest-api")
   }
