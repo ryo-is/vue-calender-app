@@ -2,6 +2,7 @@ import Vue from "vue"
 import { createNamespacedHelpers } from "vuex"
 import { HomeComponentState } from "@/types"
 
+// Vuex store helpers
 const flagsNamespacedHelper = createNamespacedHelpers("flags")
 const flagsMapActions = flagsNamespacedHelper.mapActions([
   "setHiddenToolbarItems",
