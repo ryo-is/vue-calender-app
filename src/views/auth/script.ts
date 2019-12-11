@@ -6,7 +6,11 @@ import { defaultSignupParam, defaultResetPasswordParam } from "./default_values"
 import { Auth } from "aws-amplify"
 import { SignUpParams } from "@aws-amplify/auth/lib/types/Auth"
 
-const flagsMapActions = createNamespacedHelpers("flags").mapActions
+// Vuex store helpers
+const flagsNamespacedHelper = createNamespacedHelpers("flags")
+const flagsMapActions = flagsNamespacedHelper.mapActions([
+  "setHiddenToolbarItems"
+])
 
 export default Vue.extend({
   data(): AuthComponentState {
@@ -21,11 +25,10 @@ export default Vue.extend({
     }
   },
   created() {
-    const self: any = this
-    self.setHiddenToolbarItems(false)
+    this.setHiddenToolbarItems(false)
   },
   methods: {
-    ...flagsMapActions(["setHiddenToolbarItems", "setOverlay"]),
+    ...flagsMapActions,
     // サインイン処理
     async signIn(): Promise<void> {
       const self: any = this
