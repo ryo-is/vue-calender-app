@@ -9,7 +9,8 @@ import { SignUpParams } from "@aws-amplify/auth/lib/types/Auth"
 // Vuex store helpers
 const flagsNamespacedHelper = createNamespacedHelpers("flags")
 const flagsMapActions = flagsNamespacedHelper.mapActions([
-  "setHiddenToolbarItems"
+  "setHiddenToolbarItems",
+  "setOverlay"
 ])
 
 export default Vue.extend({
@@ -31,13 +32,12 @@ export default Vue.extend({
     ...flagsMapActions,
     // サインイン処理
     async signIn(): Promise<void> {
-      const self: any = this
       try {
-        self.setOverlay(true)
+        this.setOverlay(true)
         await Auth.signIn(this.userName, this.password)
         router.push("/")
       } catch (err) {
-        self.setOverlay(false)
+        this.setOverlay(false)
         console.error(err)
         this.checkErrorCode(err.code)
       }
