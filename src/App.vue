@@ -21,11 +21,10 @@
 
 <script lang="ts">
 import Vue from "vue"
-import { createNamespacedHelpers } from "vuex"
 import router from "./router"
 import { Auth } from "aws-amplify"
+import { flagsNamespacedHelper } from "@/stores/flags"
 
-const flagsNamespacedHelper = createNamespacedHelpers("flags")
 const flagsMapState = flagsNamespacedHelper.mapState
 
 export default Vue.extend({

@@ -1,9 +1,8 @@
 import Vue from "vue"
-import { createNamespacedHelpers } from "vuex"
 import { HomeComponentState } from "@/types"
+import { flagsNamespacedHelper } from "@/stores/flags"
 
 // Vuex store helpers
-const flagsNamespacedHelper = createNamespacedHelpers("flags")
 const flagsMapActions = flagsNamespacedHelper.mapActions([
   "setHiddenToolbarItems",
   "setOverlay"

@@ -1,13 +1,12 @@
 import Vue from "vue"
-import { createNamespacedHelpers } from "vuex"
 import router from "@/router"
 import { AuthComponentState } from "@/types"
 import { defaultSignupParam, defaultResetPasswordParam } from "./default_values"
 import { Auth } from "aws-amplify"
 import { SignUpParams } from "@aws-amplify/auth/lib/types/Auth"
+import { flagsNamespacedHelper } from "@/stores/flags"
 
 // Vuex store helpers
-const flagsNamespacedHelper = createNamespacedHelpers("flags")
 const flagsMapActions = flagsNamespacedHelper.mapActions([
   "setHiddenToolbarItems",
   "setOverlay"
