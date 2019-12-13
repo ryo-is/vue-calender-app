@@ -1,5 +1,7 @@
-import { Module, ActionContext } from "vuex"
+import { Module, ActionContext, createNamespacedHelpers } from "vuex"
 import { FlagsState, RootState } from "./types"
+
+export const flagsNamespacedHelper = createNamespacedHelpers("flags")
 
 export const flags: Module<FlagsState, RootState> = {
   namespaced: true,
