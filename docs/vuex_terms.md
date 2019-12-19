@@ -30,7 +30,7 @@ const store: StoreOptions<RootState> = {
     version: ""
   },
   modules: {
-    flags  // ←ここにModuleを突っ込む。
+    flags  // ←ここにModuleを突っ込む。この場合のnamespace名はflags
   }
 }
 
@@ -47,7 +47,7 @@ Moduleを変数に入れてexportする。そのときの変数名がnamespace�
 import { Module, ActionContext } from "vuex"
 import { FlagsState, RootState } from "./types"
 
-export const flags: Module<FlagsState, RootState> = { // ←この場合のnamespace名はflags
+export const flags: Module<FlagsState, RootState> = {
   /* 省略 */
 }
 ```
