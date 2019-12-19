@@ -61,7 +61,7 @@ Store関係の型ファイル。
 - `stores/` 以下にVuex関係のソースを置く
 - namespaceを切って、それぞれのnamespace(Module)ファイルを生成する
 - Moduleの構成要素は、`namespaced / state / mutations / actions (/ getters)`
-- 直接 `mutation` を使わない
+- 直接 `mutations` を使わない
 - createNamespacedHelpersを使って、Storeとやり取りする
 
 ### `stores/` 以下にVuex関係のソースを置く
@@ -126,11 +126,13 @@ export const flags: Module<FlagsState, RootState> = {
 }
 ```
 
-### 直接 `mutation` を使わない
+### 直接 `mutations` を使わない
 
-直接 `mutation` を使わないでください( `Store.commit("hoge")` って書かない)。あくまで感覚の話になりますが `mutation` はprivateな関数として扱ってください。
+直接 `mutations` を使わない( `Store.commit("hoge")` って書かない)。あくまで感覚の話になんですが `mutations` はprivateな関数として扱った方がいいのかなって思っています。
 
-`action` 経由で `mutation` を使いましょう。書き方は下記のような感じです。
+逆に `actions` はpublicな関数として扱うという形で `mutations` と `actions` の棲み分けをします。
+
+`actions` 経由で `mutations` を使いましょう。書き方は下記のような感じです。
 
 ```
 Store.dispatch("hogehoge")
@@ -143,7 +145,7 @@ Store.dispatch("hogehoge")
 そういうときに役立つのが `createNamespacedHelpers` です。
 
 ```
-const flagsNamespacedHelper = createNamespacedHelpers("flags")
+export const flagsNamespacedHelper = createNamespacedHelpers("flags")
 ```
 
 こうやってnamespacedごとのModuleに対してやり取りをできるようにできます。
@@ -155,8 +157,7 @@ Stateを購読する場合は、computedでmapStateを展開します。スプ�
 ```
 import Vue from "vue"
 import { createNamespacedHelpers } from "vuex"
-
-const flagsNamespacedHelper = createNamespacedHelpers("flags")
+import { flagsNamespacedHelper } from "@/stores/flags"
 
 export default Vue.extend({
   computed: {
@@ -174,22 +175,30 @@ Actionを使う場合は、methodsにmapActionsを展開します。こちらも
 
 ```
 import Vue from "vue"
-import { createNamespacedHelpers } from "vuex"
+import { HomeComponentState } from "@/types"
+import { flagsNamespacedHelper } from "@/stores/flags"
 
 // Vuex store helpers
-const flagsNamespacedHelper = createNamespacedHelpers("flags")
 const flagsMapActions = flagsNamespacedHelper.mapActions([
   "setHiddenToolbarItems",
   "setOverlay"
 ])
 
 export default Vue.extend({
+  data(): HomeComponentState {
+    return {
+      text: "hoge"
+    }
+  },
   created() {
     this.setHiddenToolbarItems(true)
     this.setOverlay(false)
   },
   methods: {
-    ...flagsMapActions
+    ...flagsMapActions,
+    getText(): string {
+      return this.text
+    }
   }
 })
 ```
