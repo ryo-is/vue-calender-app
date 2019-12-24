@@ -12,17 +12,20 @@ const flagsMapActions = flagsNamespacedHelper.mapActions([
   "setOverlay"
 ])
 
+// Component data
+const data: AuthComponentState = {
+  signinForm: "signin",
+  errorMessages: [],
+  userName: "",
+  password: "",
+  signupParam: defaultSignupParam,
+  resetPasswordParam: defaultResetPasswordParam,
+  authenticationCode: ""
+}
+
 export default Vue.extend({
-  data(): AuthComponentState {
-    return {
-      signinForm: "signin",
-      errorMessages: [],
-      userName: "",
-      password: "",
-      signupParam: defaultSignupParam,
-      resetPasswordParam: defaultResetPasswordParam,
-      authenticationCode: ""
-    }
+  data() {
+    return data
   },
   created() {
     this.setHiddenToolbarItems(false)
