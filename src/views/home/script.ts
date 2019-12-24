@@ -8,11 +8,14 @@ const flagsMapActions = flagsNamespacedHelper.mapActions([
   "setOverlay"
 ])
 
+// Component data
+const data: HomeComponentState = {
+  text: "hoge"
+}
+
 export default Vue.extend({
   data(): HomeComponentState {
-    return {
-      text: "hoge"
-    }
+    return data
   },
   created() {
     this.setHiddenToolbarItems(true)
