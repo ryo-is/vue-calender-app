@@ -26,18 +26,13 @@ $ yarn (or npm i)
 
 ```
 {
-  "eslint.autoFixOnSave": true,
   "eslint.validate": [
-    "javascript",
-    {
-      "language": "typescript",
-      "autoFix": true
-    },
-    {
-      "language": "vue",
-      "autoFix": true
-    }
-  ]
+    "javascript", "typescript", "vue"
+  ],
+  "editor.codeActionsOnSaveTimeout": 2000,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
 ```
 
