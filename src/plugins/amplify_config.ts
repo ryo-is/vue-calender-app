@@ -1,6 +1,6 @@
 import { Auth } from "aws-amplify"
 
-const awsexports: { [k: string]: any } = {
+export const amplifyConfig: { [k: string]: any } = {
   Auth: {
     identityPoolId: process.env.VUE_APP_COGNITO_IDENTITY_ID,
     region: "ap-northeast-1",
@@ -34,5 +34,3 @@ const awsexports: { [k: string]: any } = {
     ]
   }
 }
-
-export default awsexports
