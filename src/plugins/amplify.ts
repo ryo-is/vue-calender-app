@@ -1,8 +1,8 @@
 import Amplify, { Auth } from "aws-amplify"
-import awsExports from "./aws_exports"
+import { amplifyConfig } from "./amplify_config"
 import router from "@/router"
 import { Route } from "vue-router"
-Amplify.configure(awsExports)
+Amplify.configure(amplifyConfig)
 
 // 認証確認
 // 認証されていなかったらログイン画面にリダイレクトする
