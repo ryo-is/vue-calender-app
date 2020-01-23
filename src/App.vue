@@ -12,6 +12,12 @@
             dark depressed width=160 @click="linkPage('/')") Home
         v-spacer
         v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
+          v-switch.mr-5.theme-switch(
+            v-model="darkTheme" dark color="grey darken-1"
+            label="テーマを変える" style="padding-top: 19px"
+            @change="changeTheme()"
+          )
+        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
           v-btn.signout-button(text @click="signout()" dark) ログアウト
     v-content
       v-overlay(:value="overlay")
@@ -28,6 +34,11 @@ import { flagsNamespacedHelper } from "@/stores/flags"
 const flagsMapState = flagsNamespacedHelper.mapState
 
 export default Vue.extend({
+  data() {
+    return {
+      darkTheme: true
+    }
+  },
   computed: {
     ...flagsMapState({
       hiddenToolbarItems: (state: any) => state.hiddenToolbarItems,
@@ -58,6 +69,9 @@ export default Vue.extend({
       if (linkPath !== this.$route.path) {
         router.push(linkPath)
       }
+    },
+    changeTheme(): void {
+      this.$vuetify.theme.dark = this.darkTheme
     }
   }
 })
@@ -94,5 +108,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.theme-switch {
+  &.v-input {
+    .v-label {
+      color: white;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
 }
 </style>
