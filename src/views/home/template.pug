@@ -7,3 +7,8 @@ v-container.home
     v-col(cols=12)
       v-icon add
       v-icon mdi-mouse
+    v-col(cols=12)
+      v-data-table(
+        :headers="tableHeaders", :items="tableItems"
+        :options.sync="tableOptions", hide-default-footer
+      )

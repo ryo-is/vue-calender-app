@@ -10,7 +10,21 @@ const flagsMapActions = flagsNamespacedHelper.mapActions([
 
 // Component data
 const data: HomeComponentState = {
-  text: "hoge"
+  tableHeaders: [
+    { text: "Name", value: "name", sortable: false },
+    { text: "Age", value: "age" },
+    { text: "Gender", value: "gender", sortable: false }
+  ],
+  tableOptions: {
+    page: -1,
+    sortBy: ["age"],
+    sortDesc: [false]
+  },
+  tableItems: [
+    { name: "Taro", age: 20, gender: "Male" },
+    { name: "Hanako", age: 18, gender: "Female" },
+    { name: "Ichiro", age: 25, gender: "Male" }
+  ]
 }
 
 export default Vue.extend({
@@ -22,9 +36,6 @@ export default Vue.extend({
     this.setOverlay(false)
   },
   methods: {
-    ...flagsMapActions,
-    getText(): string {
-      return this.text
-    }
+    ...flagsMapActions
   }
 })
