@@ -4,7 +4,9 @@ export type AppComponentState = {
 }
 
 export type HomeComponentState = {
-  text: string
+  tableHeaders: TableHeaders[]
+  tableOptions: TableOptions
+  tableItems: Array<{ name: string; age: number; gender: "Male" | "Female" }>
 }
 
 export type AuthComponentState = {
@@ -32,4 +34,21 @@ export type ResetPasswordParam = {
   userName: string
   password: string
   code: string
+}
+
+export type TableHeaders = {
+  text: string
+  value: string
+  sortable?: boolean
+}
+
+export type TableOptions = {
+  page: number
+  sortBy: string[]
+  sortDesc: boolean[]
+}
+
+export type SelectItems = {
+  text: string | number
+  value: string | number
 }
