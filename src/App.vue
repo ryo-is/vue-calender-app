@@ -1,24 +1,5 @@
 <template lang="pug">
   v-app
-    v-card(height="60px" flat tile)
-      v-app-bar.pl-12.pr-6(
-        color="indigo" height="60px"
-        prominent dense absolute elevate-on-scroll scroll-target=".main-content"
-      )
-        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
-          v-btn(
-            :color="changeLinkButtonProps('/', 'color')"
-            :text="changeLinkButtonProps('/', 'text')"
-            dark depressed width=160 @click="linkPage('/')") Home
-        v-spacer
-        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
-          v-switch.mr-5.theme-switch(
-            v-model="darkTheme" dark color="grey darken-1"
-            label="テーマを変える" style="padding-top: 19px"
-            @change="changeTheme()"
-          )
-        v-toolbar-items.hidden-sm-and-down(v-if="hiddenToolbarItems")
-          v-btn.signout-button(text @click="signout()" dark) ログアウト
     v-content
       v-overlay(:value="overlay")
         v-progress-circular(indeterminate size="80" color="indigo" width="5")
