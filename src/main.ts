@@ -4,7 +4,7 @@ import router from "./router"
 import store from "./stores/store"
 import vuetify from "./plugins/vuetify"
 import "./registerServiceWorker"
-import "./plugins/amplify"
+// import "./plugins/amplify"
 
 Vue.config.productionTip = false
 
